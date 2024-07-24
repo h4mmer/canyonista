@@ -1,0 +1,134 @@
+<svg width="400" height="600" xmlns="http://www.w3.org/2000/svg">
+    <style>
+        .label {
+        stroke:none;
+        text-anchor:start;
+        font-family:arial;
+        font-size:6px;
+        fill:black;
+        }
+        path {
+        stroke:black;
+        stroke-width: 1px;
+        fill:none;
+        }
+        .pool {
+        fill: blue;
+        }
+
+        .rock {
+        fill: gray;
+        stroke-width: 0px;
+        }
+        .treetrunk {
+        fill: brown;
+        }
+        .treetop {
+        fill: green;
+        }
+        .ancor {
+        fill: red;
+        stroke-width: 0px;
+        }
+    </style>
+    <g>
+        <title>Title</title>
+        <rect fill="#ffffff" stroke="#000" stroke-width="6" x="220" y="10" width="160" height="40" id="svg_3"/>
+        <text fill="#000000" stroke="#000" x="300" y="40" id="svg_1" font-size="24" font-family="Noto Sans JP"
+              text-anchor="middle" font-weight="bold">
+            Hallo Welt
+        </text>
+    </g>
+    <g>
+        <title>Disclaimer</title>
+        <rect fill="white" stroke-width="3" x="5" y="550" width="390" height="45" stroke="black"/>
+        <text stroke="#000" text-anchor="middle" font-family="Noto Sans JP" font-size="12"
+              y="575" x="200" stroke-width="0" fill="#000000">
+            ⚠️⚠️⚠️ This is a generated Topo and is maybe false. ⚠️⚠️⚠️
+        </text>
+    </g>
+    <g transform="translate(10,10)">
+        <g transform="translate(0,0)">
+            <path d="m0,0c0,0 2,0 2,2l0,18"/>
+            <text class="label" x="5" y="2">C20</text>
+        </g>
+        <g transform="translate(1,-5)">
+            <path d="m0,0 l4,2"/>
+            <circle r="1" class="ancor"/>
+            <circle cx="4" cy="2" r="1" class="ancor"/>
+            <text class="label" x="2" y="0">r</text>
+        </g>
+    </g>
+    <g transform="translate(12,30)">
+        <g transform="translate(0,0)">
+            <path d="m0,0l50,0"/>
+            <text class="label" x="10" y="-2"></text>
+        </g>
+    </g>
+    <g transform="translate(62,30)">
+        <g transform="translate(0,0)">
+            <path d="m0,0c0,0 2,0 2,1l3,9l5,0"/>
+            <text class="label" x="5" y="2">T10</text>
+        </g>
+        <g transform="translate(7,10)">
+            <path d="M0,0 C0,5 5,5 5,0 " class="pool"/>
+            <text class="label" x="0" y="0"></text>
+        </g>
+    </g>
+    <g transform="translate(74,40)">
+        <g transform="translate(0,0)">
+            <path d="m0,0c0,0 2,0 2,1l0,9"/>
+            <text class="label" x="5" y="2">S10</text>
+        </g>
+        <g transform="translate(2,10)">
+            <path d="M0,0 C0,5 5,5 5,0 " class="pool"/>
+            <text class="label" x="0" y="0"></text>
+        </g>
+    </g>
+    <g transform="translate(81,50)">
+        <g transform="translate(0,0)">
+            <path d="m0,0c0,0 2,0 2,2l0,48"/>
+            <text class="label" x="5" y="2">C50</text>
+        </g>
+    </g>
+    <g transform="translate(83,100)">
+        <g transform="translate(0,0)">
+            <path d="m0,0l50,0"/>
+            <text class="label" x="10" y="-2"></text>
+        </g>
+    </g>
+    <g transform="translate(133,100)">
+        <g transform="translate(0,0)">
+            <path d="m0,0l50,0"/>
+            <text class="label" x="10" y="-2"></text>
+        </g>
+    </g>
+    <g transform="translate(183,100)">
+        <g transform="translate(0,0)">
+            <path d="m0,0c0,0 2,0 2,2l0,18"/>
+            <text class="label" x="5" y="2">R20</text>
+        </g>
+    </g>
+    <g transform="translate(185,120)">
+        <g transform="translate(0,0)">
+            <path d="m0,0l50,0"/>
+            <text class="label" x="10" y="-2"></text>
+        </g>
+    </g>
+    <g transform="translate(235,120)">
+        <g transform="translate(0,0)">
+            <path d="m0,0c0,0 2,0 2,2l0,8"/>
+            <text class="label" x="5" y="2">R10</text>
+        </g>
+        <g transform="translate(2,10)">
+            <path d="M0,0 C0,5 5,5 5,0 " class="pool"/>
+            <text class="label" x="0" y="0"></text>
+        </g>
+    </g>
+    <g transform="translate(242,130)">
+        <g transform="translate(0,0)">
+            <path d="m0,0l50,0"/>
+            <text class="label" x="10" y="-2"></text>
+        </g>
+    </g>
+</svg>
