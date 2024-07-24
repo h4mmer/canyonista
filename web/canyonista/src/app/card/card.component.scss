@@ -1,0 +1,38 @@
+.card-container{
+  width: 100%;
+  padding-top: 60%;
+  box-sizing: border-box;
+  position: relative;
+  background-color: var(--ion-card-background);
+  border-radius: 20px;
+}
+.card-container:before{
+  display: block;
+}
+.card-inner {
+  position: absolute;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 100%;
+  top:0;
+  left: 0;
+  padding: 1rm;
+}
+.overlay {
+  position: absolute;
+  top:0;
+  left:0;
+  width: 100%;
+  height: 100%;
+  display:flex;
+  justify-content: center;
+  align-items: center;
+  background-color: rgba(0,0,0,0.4);
+  border-radius: 20px;
+}
+.overlay div{
+  transform: rotate(-45deg);
+}
+

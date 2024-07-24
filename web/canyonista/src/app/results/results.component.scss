@@ -1,0 +1,20 @@
+.container{
+  width: 100%;
+  display: flex;
+}
+.name {
+  width: 50%;
+  display: grid;
+}
+.course{
+  width: 25%;
+  display: grid;
+}
+.fine{
+  width: 25%;
+  display: grid;
+}
+
+ion-list{
+  --ion-item-background:var(--ion-background-color);
+}

@@ -1,0 +1,35 @@
+<app-header>
+  {{ station?.name }} ({{ station?.height }}m)
+</app-header>
+<app-scrollable>
+  <div class="info-container">
+    <h2>{{ station?.key }}</h2>
+    <div class="sub-container">
+      <h3>{{ station?.current?.date }}</h3>
+      <div class="Temperature">
+        <app-item key="avg" [value]="station?.current?.temperature_avg_c + ' c'"/>
+        <app-item key="min" [value]="station?.current?.temperature_min_c + ' c'"/>
+        <app-item key="max" [value]="station?.current?.temperature_max_c + ' c'"/>
+      </div>
+    </div>
+    <div class="sub-container">
+      <h3>Warning Levels</h3>
+      <div class="list">
+        <app-item icon="info" key="percipitation past week" [value]="station?.percipitation_week_mm + 'mm'"/>
+        <app-item icon="info" key="percipitation" [value]="station?.current?.percipitation_day_mm + 'mm'"/>
+        <app-item icon="info" key="cloudiness" [value]="station?.current?.['cloud_avg_%']+ ' %'"/>
+        <app-item icon="info" key="sunshine" [value]="(station?.current?.sunshine_min??0)/60 +' h'"/>
+        <app-item icon="info" key="snow (6am)" [value]="station?.current?.snow_6am_cm + ' cm'"/>
+      </div>
+    </div>
+    <div class="sub-container">
+      <h3>Links</h3>
+      <div class="list">
+        <a [href]="'https://www.meteoschweiz.admin.ch/service-und-publikationen/applikationen/messwerte-und-messnetze.html#param=messwerte-niederschlag-24h&station='+station?.key+'&lang=de&chart=day'"
+           target="_blank">
+          meteoschweiz.admin.ch
+        </a>
+      </div>
+    </div>
+  </div>
+</app-scrollable>

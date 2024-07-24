@@ -1,0 +1,25 @@
+/* Core CSS required for Ionic components to work properly */
+@import "../node_modules/@ionic/angular/css/core.css";
+
+/* Basic CSS for apps built with Ionic */
+@import "../node_modules/@ionic/angular/css/normalize.css";
+@import "../node_modules/@ionic/angular/css/structure.css";
+@import "../node_modules/@ionic/angular/css/typography.css";
+
+/* Optional CSS utils that can be commented out */
+@import "../node_modules/@ionic/angular/css/padding.css";
+@import "../node_modules/@ionic/angular/css/float-elements.css";
+@import "../node_modules/@ionic/angular/css/text-alignment.css";
+@import "../node_modules/@ionic/angular/css/text-transformation.css";
+@import "../node_modules/@ionic/angular/css/flex-utils.css";
+@import "../node_modules/@ionic/angular/css/display.css";
+
+/* You can add global styles to this file, and also import other style files */
+@import "./theme/roboto.css";
+
+body {
+  margin: 0;
+  font-family: Roboto, "Helvetica Neue", sans-serif;
+  font-size: var(--text-font-size);
+  color: var(--ion-text-color);
+}

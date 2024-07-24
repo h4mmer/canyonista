@@ -1,0 +1,17 @@
+
+.row{
+  display: flex;
+  align-items: center;
+  height: 100px;
+  overflow-y: hidden;
+}
+ion-picker-column-option{
+  font-size: var(--ion-picker-font-size);
+}
+ion-picker {
+  --highlight-background: var(--ion-color-medium-contrast);
+  --highlight-border-radius: 20px;
+
+  --fade-background-rgb: rgba(0,0,0,0);
+}
+

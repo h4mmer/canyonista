@@ -1,0 +1,10 @@
+<div class="card-container">
+  <div class="card-inner">
+    <div class="overlay" *ngIf="disabled" (click)="stopPropagation($event)">
+      <div>Coming<br>soon</div>
+    </div>
+    <div>
+      <ng-content></ng-content>
+    </div>
+  </div>
+</div>

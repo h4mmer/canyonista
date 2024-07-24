@@ -1,0 +1,117 @@
+<form>
+<ion-item class="roundedInput" color="medium">
+  <ion-input name="search" class="" (focusin)="focusSearch()"
+             placeholder="Search"
+             [(ngModel)]="search.search"
+             (ngModelChange)="search.filter()"/>
+  <ion-icon slot="start" name="search-outline" aria-hidden="true"></ion-icon>
+  <img src="/assets/icons/close.svg" alt="back" (click)="clearSearch()"/>
+</ion-item>
+  <ng-container ></ng-container>
+  <app-results [canyons]="canyons"
+               *ngIf="showResults; else filterContainer"
+  ></app-results>
+  <ng-template #filterContainer >
+    <div class="box">
+      <div class="filter-header">
+        <img src="/assets/icons/filter.svg" alt="filter" />
+        <span class="filter" ></span>
+        <img src="/assets/icons/close.svg" alt="back" (click)="clearFilter()"/>
+      </div>
+<div class="option-container">
+  <div class="tab-header">
+  <div class="tab-select" [ngClass]="{'selected': selected == 0}">
+  <img src="/assets/icons/clock.svg" (click)="select(0)"><br>
+    <ng-container *ngTemplateOutlet="time; context: { var: search.time, title:'Descent' }"></ng-container>
+  </div>
+  <div class="tab-select" [ngClass]="{'selected': selected == 1}">
+  <img src="/assets/icons/rope.svg" (click)="select(1)"><br>
+    <ng-container *ngTemplateOutlet="metric; context: { var: search.rope, title:'Rope' }"></ng-container>
+  </div>
+    <div class="tab-select" [ngClass]="{'selected': selected == 2}">
+      <img src="/assets/icons/waterfall.svg" (click)="select(2)"><br>
+      <ng-container *ngTemplateOutlet="metric; context: { var: search.height, title:'Waterfall' }"></ng-container>
+    </div>
+    <div class="tab-select" [ngClass]="{'selected': selected == 3}">
+      <img src="/assets/icons/radius.svg" (click)="select(3)"><br>
+      <small>Radius</small>
+    </div>
+    <div class="tab-select" [ngClass]="{'selected': selected == 4}">
+      <img src="/assets/icons/travel.svg" (click)="select(4)"><br>
+      <small>Transport</small>
+    </div>
+    <div class="tab-select" [ngClass]="{'selected': selected == 5}">
+      <img src="/assets/icons/attributes.svg" (click)="select(5)"><br>
+      <small>Attributes</small>
+    </div>
+  </div>
+  <app-card id="0" class="option" [ngClass]="{'expanded': selected == 0}" (click)="select(0)">
+    <app-picker
+    [min]="search.time.min"
+    [max]="search.time.max"
+    [context]="this"
+    [f]="onIonChange"
+    [options]="timeOptions"
+    title="Duration"
+    field="time"
+    >
+    </app-picker>
+  </app-card>
+  <app-card id="1" class="option" [ngClass]="{'expanded': selected == 1}" (click)="select(1)">
+    <app-picker
+      [min]="search.rope.min"
+      [max]="search.rope.max"
+      [context]="this"
+      [f]="onIonChange"
+      [options]="heightOptions"
+      title="Min. length (x2)"
+      field="rope"
+    >
+    </app-picker>
+  </app-card>
+  <app-card id="2" class="option" [ngClass]="{'expanded': selected == 2}" (click)="select(2)">
+
+    <app-picker
+      [min]="search.height.min"
+      [max]="search.height.max"
+      [context]="this"
+      [f]="onIonChange"
+      [options]="heightOptions"
+      title="Max. height"
+      field="height"
+    >
+    </app-picker>
+  </app-card>
+  <app-card [disabled]="true" id="3" class="option" [ngClass]="{'expanded': selected == 3}" (click)="select(3)">
+    <img src="/assets/icons/radius.svg" alt="radius"/><br>
+    {{search.distance.max ? search.distance.max+'km': 'Distance'}}
+  </app-card>
+  <app-card [disabled]="true" id="4" class="option" [ngClass]="{'expanded': selected == 4}" (click)="select(4)">
+    <img src="/assets/icons/travel.svg" alt="travel medium"/><br>
+    {{search.travel??'Travel'}}
+  </app-card>
+  <app-card [disabled]="true" id="5" class="option" [ngClass]="{'expanded': selected == 5}" (click)="select(5)">
+    <img src="/assets/icons/attributes.svg" alt="attributes"/><br>
+    Attributes
+  </app-card>
+  <ng-template #time let-min="var.min" let-max="var.max" let-title="title">
+    <small>
+    {{ min && max ? (min |time) + ' - ' + (max |time) : '' }}
+    {{ min && !max ? '>' + (min|time) : '' }}
+    {{ !min && max ? '<' + (max|time) : '' }}
+    {{ !min && !max ? title : '' }}
+    </small>
+  </ng-template>
+
+  <ng-template #metric let-min="var.min" let-max="var.max" let-title="title">
+    <small>
+      {{ min && max ? min + 'm - ' + max + 'm' : '' }}
+      {{ min && !max ? '>' + min + 'm' : '' }}
+      {{ !min && max ? '<' + max + 'm' : '' }}
+      {{ !min && !max ? title : '' }}
+    </small>
+  </ng-template>
+</div>
+    </div>
+  </ng-template>
+</form>

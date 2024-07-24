@@ -1,0 +1,41 @@
+.container{
+  border-top-left-radius: 20px;
+  border-top-right-radius: 20px;
+  box-sizing: border-box;
+  background-color: var(--ion-background-color);
+  fill-opacity: 0;
+  position: fixed;
+  width: 100%;
+  min-height: 100%;
+  left: 0;
+}
+.content{
+  margin: 0 1lh;
+}
+.handle{
+  width: 100%;
+  text-align: center;
+  padding: 10px 0 15px;
+}
+.handle hr{
+  display: block;
+  margin: 0 auto ;
+  border-style: solid;
+  border-radius: 2.5px;
+  border-width: 2.5px;
+  border-color: var(--ion-card-background);
+  height: 0;
+  width: 12%;
+}
+.footer{
+  position: absolute;
+  color: var(--ion-text-color);
+  display:flex;
+  align-items: center;
+  width: 100%;
+  top:95%;
+}
+.footer a:visited,.footer a:link,.footer a:hover,.footer a:active{
+  color: var(--ion-text-color);
+  text-decoration: none;
+}

@@ -1,0 +1,30 @@
+<div (click)="stopPropagation($event)">
+  <span>{{title}}</span>
+  <div class="row">
+    <ion-picker>
+      <ion-picker-column [value]="min" (ionChange)="f.apply(context,[$event,'min',field])">
+        <ion-picker-column-option [value]="undefined">
+          --
+        </ion-picker-column-option>
+        <ion-picker-column-option *ngFor="let option of options"
+                                  [value]="option.value">
+          {{ option.text }}
+        </ion-picker-column-option>
+      </ion-picker-column>
+    </ion-picker>
+    -
+    <div>
+      <ion-picker>
+        <ion-picker-column [value]="max" (ionChange)="f.apply(context,[$event,'max',field])">
+          <ion-picker-column-option *ngFor="let option of options"
+                                    [value]="option.value">
+            {{ option.text }}
+          </ion-picker-column-option>
+          <ion-picker-column-option [value]="undefined">
+            --
+          </ion-picker-column-option>
+        </ion-picker-column>
+      </ion-picker>
+    </div>
+  </div>
+</div>

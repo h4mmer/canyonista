@@ -1,0 +1,74 @@
+<app-header>
+    {{ canyon?.name }}
+</app-header>
+<app-scrollable>
+  <div style="height:100px;display: flex">
+    <div class="bg-card" style="background-color:darkslategray">
+      Topo<br> coming soon
+    </div>
+    <div style="width: 2%;">
+
+    </div>
+    <div class="bg-card" style="background-image: url('https://bachab.ch/wp-content/uploads/2019/10/bog-sup.jpg')">
+      Pictures<br> coming soon
+    </div>
+  </div>
+  <div class="info-container">
+    <h2>Info {{ canyon?.rating?(canyon?.rating + '⭐'):''}}</h2>
+    <div class="sub-container">
+      <h3>Duration</h3>
+      <div class="list">
+        <app-item icon="default" key="Descent" [value]="canyon?.duration | duration"/>
+        <app-item key="Approach" [value]="canyon?.approach | duration"/>
+        <app-item key="Exit" [value]="canyon?.exit | duration"/>
+        <app-item key="Total" [value]="'Todo'"/>
+      </div>
+    </div>
+    <div class="sub-container">
+      <h3>Canyoning</h3>
+      <div class="list">
+        <app-item icon="info" key="Difficulty" [value]="canyon | difficulty"/>
+        <app-item icon="rope" key="Min Rope" [value]="canyon | rope"/>
+        <app-item icon="waterfall" key="Max. height" [value]="canyon?.maxDescent?.value +'?' "/>
+      </div>
+    </div>
+    <div class="sub-container">
+      <h3>Links</h3>
+      <div class="list">
+        <a [href]="'http://ropewiki.com/'+canyon?.ids?.['ropewiki.com']"
+           *ngIf="canyon?.ids?.['ropewiki.com']"
+           target="_blank">
+          RopeWiki
+        </a>
+        <br>
+        <a [href]="'http://descente-canyon.com/canyoning/canyon/'+canyon?.ids?.['descente-canyon.com']"
+           *ngIf="canyon?.ids?.['descente-canyon.com']"
+           target="_blank">
+          Descente-Canyon.com
+        </a>
+      </div>
+    </div>
+    <div class="info-container">
+      <h2>Description</h2>
+      <div class="sub-container">
+        <h3>Tour</h3>
+        <p>
+          {{ canyon?.description }}
+        </p>
+      </div>
+      <div class="sub-container">
+        <h3>Approach</h3>
+        <p>
+          {{ canyon?.approach?.description }}
+        </p>
+      </div>
+
+      <div class="sub-container">
+        <h3>Exit</h3>
+        <p>
+          {{ canyon?.exit?.description }}
+        </p>
+      </div>
+    </div>
+  </div>
+</app-scrollable>

@@ -1,0 +1,25 @@
+<app-header>
+  {{ station?.name }}
+</app-header>
+<app-scrollable>
+  <div class="info-container">
+    <h2>{{ station?.fullName }}</h2>
+    <div class="sub-container">
+      <h3>{{ station?.value?.timestamp?.substring(0,10) }}</h3>
+      <div class="list">
+        <app-item key="water level" [value]="station?.value?.last + ' ' + station?.unit"/>
+        <app-item key="last 24h min" [value]="station?.value?.min + ' ' + station?.unit"/>
+        <app-item key="last 24h max" [value]="station?.value?.max + ' ' + station?.unit"/>
+      </div>
+    </div>
+    <div class="sub-container">
+      <h3>Links</h3>
+      <div class="list">
+        <a [href]="'https://www.hydrodaten.admin.ch/en/seen-und-fluesse/stations/'+station?.stationId"
+           target="_blank">
+          hydrodaten.admin.ch
+        </a>
+      </div>
+    </div>
+  </div>
+</app-scrollable>

@@ -1,0 +1,20 @@
+<ion-list>
+  <ion-item *ngFor="let canyon of canyons"
+  [routerLink]="'detail/'+canyon.id">
+    <div class="container">
+      <div class="name centered">
+    <span>{{canyon.name}}</span>
+    <small>{{canyon.location?.state}}</small>
+      </div>
+      <div class="course centered">
+    <span style="text-align: right">{{canyon | rope}} <img src="/assets/icons/rope.svg" alt="min rope"/></span>
+      </div>
+      <div class="fine centered">
+    <span>⇓{{canyon.duration | duration}}</span>
+        <small>
+          ⇒{{(canyon.approach | duration) ?? "?"}}
+          ⇐{{(canyon.exit | duration) ?? "?"}}</small>
+      </div>
+    </div>
+  </ion-item>
+</ion-list>

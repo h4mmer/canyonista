@@ -1,0 +1,22 @@
+<div class="container"
+     [@slideInBottom]="state"
+     swipe
+     (up)="swipe('up')"
+     (down)="swipe('down')"
+     (centerUp)="swipe('centerUp')"
+     (centerDown)="swipe('centerDown')"
+     (fullUp)="swipe('fullUp')"
+     (fullDown)="swipe('fullDown')"
+>
+  <div class="handle" (click)="toggle()">
+    <hr>
+  </div>
+  <div class="content">
+    <ng-content></ng-content>
+    <div class="footer" [style]="'display: '+(state == 'up' ? 'flex' : 'none')">
+    <a href="/info">
+      <img src="/assets/icons/info.svg" alt="info"/> V{{version}} ©Canyonista
+    </a>
+    </div>
+  </div>
+</div>

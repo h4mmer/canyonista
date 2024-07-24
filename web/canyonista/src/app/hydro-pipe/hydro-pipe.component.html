@@ -1,0 +1,17 @@
+<app-header>
+  {{ station?.body }}
+</app-header>
+<app-scrollable>
+  <div class="info-container">
+    <h2>{{ station?.name }}</h2>
+    {{station?.type}}
+    <div class="sub-container" *ngFor="let i of [0,1,2,3,4,5,6,7,8,9,10,11]">
+      <h3>{{['Jan','Feb','Mar','Apr','Mai','Jun','Jul','Aug','Sept','Oct','Nov','Dec'][i]}}</h3>
+      <div class="list">
+        <app-item key="natural flow" [value]="(station?.naturalFlow?.[i]??'?') + ' m3/s'"/>
+        <app-item key="avg. withdraw" [value]="(station?.withdraw?.[i]??'?') + ' m3/s'"/>
+        <app-item key="avg. residual" [value]="(station?.residual?.[i]??'?') + ' m3/s'"/>
+      </div>
+    </div>
+  </div>
+</app-scrollable>

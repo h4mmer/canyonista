@@ -1,0 +1,10 @@
+{
+  "defaultProject": "canyonista",
+  "projects": {
+    "canyonista": {
+      "name": "canyonista",
+      "integrations": {},
+      "type": "angular-standalone"
+    }
+  }
+}
