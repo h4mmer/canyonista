@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        .label {
+            stroke: none;
+            text-anchor: start;
+            font-family: arial;
+            font-size: 6px;
+            fill: black;
+        }
+
+        path {
+            stroke: black;
+            stroke-width: 1px;
+            fill: none;
+        }
+
+        .pool {
+            fill: blue;
+        }
+
+        .rock {
+            fill: gray;
+            stroke-width: 0px;
+        }
+
+        .treetrunk {
+            fill: brown;
+        }
+
+        .treetop {
+            fill: green;
+        }
+
+        .ancor {
+            fill: red;
+            stroke-width: 0px;
+        }
+    </style>
+    <script>
+        function showTopo() {
+            let topo = getTopo(document.getElementById("text_input").value,document.getElementById("name").value);
+
+            var img = document.createElement("div");
+            img.innerHTML = topo
+            var src = document.getElementById("topo");
+            src.innerHTML = ''
+            src.appendChild(img);
+        }
+
+        function getTopo(codedTopo,name) {
+            console.log("Hello Canoyonist")
+            obstacleRex = new RegExp("(C|R|S|T|D|W|P|MC|u|U|_|t|x)(\\d*)(r?d|r?g|l|r|c)? ?", "g"); //(C|R|MC|S|T|E|D|Walk|Swim)(d+)(r?D|r?G|r?d|r?g|l|L|R|r|c|C)?(u|U)?.?
+            let array1;
+            let obstacles = [];
+            console.log(codedTopo)
+            while ((array1 = obstacleRex.exec(codedTopo)) !== null) {
+                console.log(array1)
+                console.log(`Found ${array1[0]}. Next starts at ${obstacleRex.lastIndex}.`);
+                obstacles[obstacles.length] = toSVGElement({
+                    type: array1[1],
+                    value: array1[2],
+                    bolt: array1[3],
+                    pool: array1[4]
+                })
+            }
+            return toSVG(obstacles, name)
+        }
+
+        function toSVGElement(obstacle) {
+            let out = ""
+            let width = 0, height = 0
+            switch (obstacle.type) {
+                case "C": //Cascade
+                case "R": //Rappel
+                case "S": //Jump
+                    width = 5
+                    height = +obstacle.value + 5
+                    out = `<path d="m0,0c0,0 5,0 5,5l0,${obstacle.value}"/>`
+                    break;
+                case "T": //Tobogan
+                case "D": //Downclimb
+                    width = +obstacle.value + 2
+                    height = +obstacle.value + 2
+                    out = `<path d="m0,0c0,0 2,0 2,2l${obstacle.value},${obstacle.value}l0,0"/>`
+                    break;
+                case "_":
+                    obstacle.value = 5
+                case "W": //Walk
+                case "MC": //Via farata
+                    width = obstacle.value > 50 ? 50 : +obstacle.value
+                    height = 0
+                    out = `<path d="m0,0 l${obstacle.value},0"/>`
+                    break;
+                case "u":
+                case "U":
+                    obstacle.value = obstacle.type==="u" ? 5 : 10
+                case "P": //Pool
+                    width = obstacle.value > 50 ? 50 : +obstacle.value
+                    height = 0
+                    let depth = obstacle.value > 10 ? 10 : +obstacle.value
+                    out = `<path class="pool" d="m0,0c0,0 0,${depth} ${depth},${depth}l${width},0c0,0 ${depth},0 ${depth},-${depth}l0,0"/>`
+                    width += depth*2
+                    break;
+                case "t":
+                    width = 0
+                    height = 0
+                    out = "<g transform=\"translate(-2 -10)\"><rect x=\"2\" y=\"5\" width=\"2\" height=\"5\" class=\"treetrunk\"/><circle cx=\"3\" cy=\"3\" r=\"3\" class=\"treetop\"/></g>"
+                    break;
+                case "x":
+                    width = 0
+                    height = 0
+                    out= "<g transform=\"translate(-2 -5)\"><rect width=\"2\" height=\"7\" transform=\"rotate(45) translate(4.5,-3.5)\" class=\"treetrunk\"/> <rect width=\"2\" height=\"7\" transform=\"rotate(-45) translate(-1.5,1.5)\" class=\"treetrunk\"/></g>"
+                    break;
+                default:
+                    console.log(`no case for: '${obstacle.type}'`)
+            }
+            if(["C","R","S","T","D","W","P","MC"].includes(obstacle.type))
+                out += `<text class="label" x=10 y=0>${obstacle.type}${obstacle.value}${obstacle.bolt ?? ""}</text>`
+            return {width: width, height: height, content: out}
+        }
+
+        function toSVG(elements, name) {
+            const width = 400
+            const height = 600
+            const marginY = 10
+            let marginX = 10
+            let x = 0
+            let y = 0 + marginY
+            let content = ""
+            console.log(elements)
+            for (let element in elements) {
+                console.log(elements[element])
+                x = x + elements[element].width < width - marginX ? x : marginX
+                content += `<g #obstacle${element} transform="translate(${x} ${y})">${elements[element].content}</g>`
+                x += elements[element].width
+                y += elements[element].height
+            }
+
+            return `<svg width="${width}" height="${height}" xmlns="http://www.w3.org/2000/svg">`
+
+                + "<g>\n" +
+                "    <title>Title</title>\n" +
+                "    <rect fill=\"#ffffff\" stroke=\"#000\" stroke-width=\"6\" x=\"220\" y=\"10\" width=\"160\" height=\"40\" id=\"svg_3\"/>\n" +
+                "    <text fill=\"#000000\" stroke=\"#000\" x=\"300\" y=\"40\" id=\"svg_1\" font-size=\"24\" font-family=\"Noto Sans JP\" text-anchor=\"middle\" font-weight=\"bold\">\n" +
+                name +
+                "    </text>\n" +
+                "  </g>\n" +
+                "  <g>\n" +
+                "    <title>Disclaimer</title>\n" +
+                "    <rect fill=\"white\" stroke-width=\"3\" x=\"5\" y=\"550\" width=\"390\" height=\"45\" stroke=\"black\"/>\n" +
+                "    <text stroke=\"#000\" text-anchor=\"middle\" font-family=\"Noto Sans JP\" font-size=\"12\"\n" +
+                "          y=\"575\" x=\"200\" stroke-width=\"0\" fill=\"#000000\">\n" +
+                "      ⚠\uFE0F⚠\uFE0F⚠\uFE0F This is a generated Topo and is maybe false. ⚠\uFE0F⚠\uFE0F⚠\uFE0F\n" +
+                "    </text>\n" +
+                "  </g>"
+                + content
+                + "</svg>";
+        }
+    </script>
+</head>
+<body>
+Parameterised Features:<br>
+<ul>
+    <li>C => Cascade eg. (C10)</li>
+    <li>R => Rappel</li>
+    <li>S => Jump</li>
+    <li>T => Tobogan</li>
+    <li>D => Downclimb</li>
+    <li>W => Walk</li>
+    <li>P => Pool</li>
+    <li>MC => Via farata</li>
+</ul>
+Objects without label and Value:<br>
+<ul>
+    <li>_ => flat section</li>
+    <li>u => shallow Pool</li>
+    <li>U => deep Pool</li>
+    <li>t => tree</li>
+    <li>x => wood/trees/stuff</li>
+</ul>
+<span> Example: C10u__tR30_x_D15__S12UT10UW50 S10P100__MC5__C100___W200 ___C10u_T40U__MC10__R15R50uC10__</span><br>
+<label for="text_input">Enter canyon name here: </label>
+<input id="name" onchange="showTopo()" value="some Canyon" /><br>
+<label for="text_input">Enter Topo String here: </label>
+<input id="text_input" onchange="showTopo()" value="C10u__tR30_x_D15__S12UT10UW50 S10P100__MC5__C100___W200 ___C10u_T40U__MC10__R15R50uC10__" /><br>
+<button onclick="showTopo()">Test</button>
+<div id="topo"></div>
+</body>
+</html>
